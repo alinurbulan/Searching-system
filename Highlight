@@ -25,9 +25,9 @@
     </style>
 </head>
 <body>
-    <textarea id="inputText" placeholder="Введите текст..."></textarea><br><br>
-    <input type="text" id="searchWord" placeholder="Слово для поиска">
-    <button onclick="highlight()">Поиск</button>
+    <textarea id="inputText" placeholder="Enter some text..."></textarea><br><br>
+    <input type="text" id="searchWord" placeholder="Word for a search">
+    <button onclick="highlight()">Highlight</button>
 
     <div id="message" style="color: red; font-weight: bold;"></div>
     <div id="result"></div>
@@ -43,13 +43,13 @@
             result.innerHTML = "";
 
             if (!word) {
-                message.innerText = "Введите слово для поиска.";
+                message.innerText = "Enter some word to search for";
                 return;
             }
 
             const regex = new RegExp(`\\b(${word})\\b`, "gi");
             if (!regex.test(text)) {
-                message.innerText = `Слово '${word}' не найдено в тексте.`;
+                message.innerText = `Word '${word}' has not been found there.`;
                 return;
             }
 
