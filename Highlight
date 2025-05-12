@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск и выделение слова</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+        }
+        #result {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="inputText" placeholder="Введите текст..."></textarea><br><br>
+    <input type="text" id="searchWord" placeholder="Слово для поиска">
+    <button onclick="highlight()">Поиск</button>
+
+    <div id="message" style="color: red; font-weight: bold;"></div>
+    <div id="result"></div>
+
+    <script>
+        function highlight() {
+            const text = document.getElementById("inputText").value;
+            const word = document.getElementById("searchWord").value;
+            const message = document.getElementById("message");
+            const result = document.getElementById("result");
+
+            message.innerHTML = "";
+            result.innerHTML = "";
+
+            if (!word) {
+                message.innerText = "Введите слово для поиска.";
+                return;
+            }
+
+            const regex = new RegExp(`\\b(${word})\\b`, "gi");
+            if (!regex.test(text)) {
+                message.innerText = `Слово '${word}' не найдено в тексте.`;
+                return;
+            }
+
+            const highlighted = text.replace(regex, '<span class="highlight">$1</span>');
+            result.innerHTML = highlighted;
+        }
+    </script>
+</body>
+</html>
